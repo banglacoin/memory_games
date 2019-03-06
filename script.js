@@ -1,33 +1,35 @@
+//DOM Element
 var gameDiv = document.getElementById("memoryGame");
-var newGame = document.getElementById("newGame");
+var newGame = document.getElementById("startAgain");
 var pairs4 = document.getElementById("pairs4");
 var pairs6 = document.getElementById("pairs6");
 var pairs8 = document.getElementById("pairs8");
 
+//Variable
 var cardSize = 100;
 var cardSpacing = 10;
 
 // Create Verticale and Horizontal Coulumn
 function createGrid(h, v) {
   var arr = [];
-  for(var i = 0; i<h*v/2; i++){
+  for (var i = 0; i < h * v / 2; i++) {
     arr.push(i);
     arr.push(i);
   }
   // Shuffle Array Index number
   var shuffle = [];
-  while(arr.length > 0){
-    var rand = Math.floor(Math.random()*arr.length);
+  while (arr.length > 0) {
+    var rand = Math.floor(Math.random() * (arr.length));
     shuffle.push(arr[rand]);
-    arr.splice(rand,1);
+    arr.splice(rand, 1);
   }
-  for (var x=0; x<h; x++) {
-    for (var y=0; y<v; y++) {
+  for (var x = 0; x < h; x++) {
+    for (var y = 0; y < v; y++) {
       createCard(shuffle.pop(), x, y);
     }
   }
 }
-// Create Card
+// Create Card function
 function createCard(cardNum, posX, posY) {
   var card = document.createElement("img");
   card.num = cardNum;
@@ -39,27 +41,26 @@ function createCard(cardNum, posX, posY) {
   card.onclick = clickCard;
   gameDiv.appendChild(card);
 }
-// Click Card
-function clickCard(e){
+// Click Card function
+function clickCard(e) {
   var card = e.target;
-  card.src = "images/"+ card.num +".png";
+  card.src = "images/" + card.num + ".png";
 }
 
 //Start button
-newGame.addEventListener("click",startAgain);
-function startAgain(){
-window.location.reload();
+newGame.addEventListener("click", startAgain);
+function startAgain() {
+  window.location.reload();
 }
 //Select 4 pairs
-pairs4.addEventListener("click",function(){
-  createGrid(4,2);
-  
+pairs4.addEventListener("click", function() {
+  createGrid(4, 2);
 });
 //Select 6 pairs
-pairs6.addEventListener("click",function(){
-  createGrid(4,3);
+pairs6.addEventListener("click", function() {
+  createGrid(4, 3);
 });
 //Select 8 pairs
-pairs8.addEventListener("click",function(){
-  createGrid(4,4);
+pairs8.addEventListener("click", function() {
+  createGrid(4, 4);
 });
