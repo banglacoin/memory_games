@@ -1,4 +1,4 @@
-//DOM Element
+//Variable DOM Element
 var gameDiv = document.getElementById("memoryGame");
 var newGame = document.getElementById("startAgain");
 var pairs4 = document.getElementById("pairs4");
@@ -8,8 +8,10 @@ var pairs8 = document.getElementById("pairs8");
 //Variable
 var cardSize = 100;
 var cardSpacing = 10;
+var firstCard = 0;
+var secondCard = 0;
 
-// Create Verticale and Horizontal Coulumn
+// Create Horizontal and Verticle Coulumn
 function createGrid(h, v) {
   var arr = [];
   for (var i = 0; i < h * v / 2; i++) {
@@ -29,7 +31,7 @@ function createGrid(h, v) {
     }
   }
 }
-// Create Card function
+// Create Card function  
 function createCard(cardNum, posX, posY) {
   var card = document.createElement("img");
   card.num = cardNum;
@@ -41,10 +43,31 @@ function createCard(cardNum, posX, posY) {
   card.onclick = clickCard;
   gameDiv.appendChild(card);
 }
-// Click Card function
+
+// Click Card function and Compare Card
 function clickCard(e) {
   var card = e.target;
   card.src = "images/" + card.num + ".png";
+
+  if(firstCard === 0) //first card is not clicked
+  {
+    firstCard = card;
+  } else if (secondCard === 0) //first card clicked but second card not clicke
+  {
+    secondCard = card;
+    //Compare Card
+    if(firstCard.num == secondCard.num) //If card matches
+    {
+      firstCard.style.position = 'block';
+      secondCard.style.position = 'block';
+    } // if card not matches
+    else {
+      firstCard.src = "images/bg.png";
+      secondCard.src = "images/bg.png";
+    }
+    firstCard = 0;
+    secondCard = 0;
+  }
 }
 
 //Start button
