@@ -31,7 +31,7 @@ function createGrid(h, v) {
     }
   }
 }
-// Create Card function  
+// Create Card function
 function createCard(cardNum, posX, posY) {
   var card = document.createElement("img");
   card.num = cardNum;
@@ -44,38 +44,41 @@ function createCard(cardNum, posX, posY) {
   gameDiv.appendChild(card);
 }
 
-// Click Card function and Compare Card
+// Click Card function
 function clickCard(e) {
+  // e(events) will remember which card was clicked
   var card = e.target;
-  card.src = "images/" + card.num + ".png";
 
-  if(firstCard === 0) //first card is not clicked
-  {
+  if (firstCard === 0) {
+    //first card is not clicked
     firstCard = card;
-  } else if (secondCard === 0) //first card clicked but second card is not clicked
-  {
+    card.src = "images/" + card.num + ".png";
+  } else if (secondCard === 0) {
+    //first card clicked but second card is not clicked
+    card.src = "images/" + card.num + ".png";
     secondCard = card;
-    setTimeout(checkCards,1000)//Delay One Second
+    setTimeout(checkCards, 1000); //Delay One Second
   }
 }
-    function checkCards(){
-    //Compare Card
-    if(firstCard.num === secondCard.num) //If card matches
-    {
-      firstCard.style.position = 'block';
-      secondCard.style.position = 'block';
-    } // if card not matches
-    else {
-      firstCard.src = "images/bg.png";
-      secondCard.src = "images/bg.png";
-    }
-    firstCard = 0;
-    secondCard = 0;
-  }
 
+function checkCards() {
+  //Compare Card
+  if (firstCard.num === secondCard.num) {
+    //If card matches
+    firstCard.style.position = 'block';
+    secondCard.style.position = 'block';
+  } else {
+    // if card not matches
+    firstCard.src = "images/bg.png";
+    secondCard.src = "images/bg.png";
+  }
+  firstCard = 0;
+  secondCard = 0;
+}
 
 //Start button
 newGame.addEventListener("click", startAgain);
+
 function startAgain() {
   window.location.reload();
 }
