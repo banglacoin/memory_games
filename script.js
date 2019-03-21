@@ -52,11 +52,15 @@ function clickCard(e) {
   if(firstCard === 0) //first card is not clicked
   {
     firstCard = card;
-  } else if (secondCard === 0) //first card clicked but second card not clicke
+  } else if (secondCard === 0) //first card clicked but second card is not clicked
   {
     secondCard = card;
+    setTimeout(checkCards,1000)//Delay One Second
+  }
+}
+    function checkCards(){
     //Compare Card
-    if(firstCard.num == secondCard.num) //If card matches
+    if(firstCard.num === secondCard.num) //If card matches
     {
       firstCard.style.position = 'block';
       secondCard.style.position = 'block';
@@ -68,7 +72,7 @@ function clickCard(e) {
     firstCard = 0;
     secondCard = 0;
   }
-}
+
 
 //Start button
 newGame.addEventListener("click", startAgain);
