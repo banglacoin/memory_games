@@ -56,8 +56,12 @@ function clickCard(e) {
 
   if (firstCard === 0) {
     //first card is not clicked
-    firstCard = card;
     card.src = "images/" + card.num + ".png";
+    firstCard = card;
+
+  } else if (firstCard === card){
+    firstCard.src = "images/bg.png";
+    firstCard = 0;
   } else if (secondCard === 0) {
     //first card clicked but second card is not clicked
     card.src = "images/" + card.num + ".png";
