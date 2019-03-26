@@ -15,21 +15,32 @@ var shuffle = [];
 var gameFieldWidth;
 var gameFieldHeight;
 
-createGrid(4, 4); //Home Screen With all card
+//Home Screen With all card
+createGrid(4, 4);
+
 // Create Horizontal and Verticle Coulumn
 function createGrid(gameFieldWidth, gameFieldHeight) {
   for (var i = 0; i < gameFieldWidth * gameFieldHeight / 2; i++) {
     sortedCards.push(i);
     sortedCards.push(i);
   }
+  //Random Card function invoke
+  randomCard();
+  //Game Field function invoke
+  createGameField();
+}
 
-  // Shuffle Array Index number
+//Create Random Card function
+function randomCard() {
   while (sortedCards.length > 0) {
     var rand = Math.floor(Math.random() * (sortedCards.length));
     shuffle.push(sortedCards[rand]);
     sortedCards.splice(rand, 1);
   }
+}
 
+// Create Game Field With X and Y axis
+function createGameField() {
   for (var x = 0; x < gameFieldWidth; x++) {
     for (var y = 0; y < gameFieldHeight; y++) {
       createCard(shuffle.pop(), x, y);
@@ -58,8 +69,8 @@ function clickCard(e) {
     //first card is not clicked
     card.src = "images/" + card.num + ".png";
     firstCard = card;
-
-  } else if (firstCard === card){
+  } //If user click first card more than once
+  else if (firstCard === card) {
     firstCard.src = "images/bg.png";
     firstCard = 0;
   } else if (secondCard === 0) {
