@@ -2,19 +2,13 @@
 h1 {
   text-align: center;
 }
-#memoryGame {
+.memoryGame {
   height: 450px;
   width: 450px;
   position: relative;
   margin: auto;
 }
-#howToPlay {
-  height: 300px;
-  width: 600px;
-  position: relative;
-  margin: auto;
-}
-#console {
+.console {
   height: 50px;
   width: 100%;
   display: flex;

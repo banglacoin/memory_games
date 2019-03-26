@@ -10,23 +10,28 @@ var cardSize = 100;
 var cardSpacing = 10;
 var firstCard = 0;
 var secondCard = 0;
+var sortedCards = [];
+var shuffle = [];
+var gameFieldWidth;
+var gameFieldHeight;
 
+createGrid(4, 4); //Home Screen With all card
 // Create Horizontal and Verticle Coulumn
-function createGrid(h, v) {
-  var arr = [];
-  for (var i = 0; i < h * v / 2; i++) {
-    arr.push(i);
-    arr.push(i);
+function createGrid(gameFieldWidth, gameFieldHeight) {
+  for (var i = 0; i < gameFieldWidth * gameFieldHeight / 2; i++) {
+    sortedCards.push(i);
+    sortedCards.push(i);
   }
+
   // Shuffle Array Index number
-  var shuffle = [];
-  while (arr.length > 0) {
-    var rand = Math.floor(Math.random() * (arr.length));
-    shuffle.push(arr[rand]);
-    arr.splice(rand, 1);
+  while (sortedCards.length > 0) {
+    var rand = Math.floor(Math.random() * (sortedCards.length));
+    shuffle.push(sortedCards[rand]);
+    sortedCards.splice(rand, 1);
   }
-  for (var x = 0; x < h; x++) {
-    for (var y = 0; y < v; y++) {
+
+  for (var x = 0; x < gameFieldWidth; x++) {
+    for (var y = 0; y < gameFieldHeight; y++) {
       createCard(shuffle.pop(), x, y);
     }
   }
@@ -78,19 +83,32 @@ function checkCards() {
 
 //Start button
 newGame.addEventListener("click", startAgain);
-
+//Start Again Function
 function startAgain() {
-  window.location.reload();
-}
-//Select 4 pairs
-pairs4.addEventListener("click", function() {
-  createGrid(4, 2);
-});
-//Select 6 pairs
-pairs6.addEventListener("click", function() {
-  createGrid(4, 3);
-});
-//Select 8 pairs
-pairs8.addEventListener("click", function() {
+  gameDiv.innerHTML = " ";
   createGrid(4, 4);
-});
+}
+
+//Select 4 pairs
+pairs4.addEventListener("click", pairsOfFour);
+
+function pairsOfFour() {
+  gameDiv.innerHTML = " ";
+  gameDiv.pairs4.innerHTML = createGrid(4, 2);
+}
+
+//Select 6 pairs
+pairs6.addEventListener("click", pairsOfSix);
+
+function pairsOfSix() {
+  gameDiv.innerHTML = " ";
+  gameDiv.pairs6.innerHTML = createGrid(4, 3);
+}
+
+//Select 8 pairs
+pairs8.addEventListener("click", pairsOfEight);
+
+function pairsOfEight() {
+  gameDiv.innerHTML = " ";
+  gameDiv.pairs8.innerHTML = createGrid(4, 4);
+}

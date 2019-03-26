@@ -7,13 +7,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css">
 	<title>Memory Game</title>
 </head>
 <header>
 	<h1>Memory Game</h1>
-		<div id="console">
+		<div id="console" class="console">
 			<button id="startAgain" class="btn btn-outline-primary btn-lg mr-3">START AGAIN</button>
 			<button id="pairs4" class="btn btn-danger mr-3">4 Pairs</button>
 			<button id="pairs6" class="btn btn-secondary mr-3">6 Pairs</button>
@@ -22,29 +22,9 @@
 </header>
 
 <main>
-	<div id="howToPlay">
-		<h2 class="text-center">How To Play</h2>
-		<div class="row">
-			<div class="col-md-6">
-				<ul>
-					<li>Deutsch</li>
-					<li>Klicken Sie auf den gewünschten Button, für den Sie spielen möchten</li>
-					<li>Jedes Mal, wenn Sie ein neues Paar auswählen möchten, klicken Sie auf die Schaltfläche START AGAIN und dann auf die Schaltfläche "Wunsch" </li>
-				</ul>
-			</div>
-			<div class="col-md-6">
-				<ul>
-					<li>English</li>
-					<li>Click the desire Button You Want to Play For</li>
-					<li>Each time you want to choose a new pair, click the START AGAIN button and then click the desire button </li>
-				</ul>
-			</div>
-		</div>
-	</div>
-	<div id="memoryGame" class="mt-5"></div>
+	<div id="memoryGame" class="memoryGame mt-5"></div>
 </main>
 
-<footer></footer>
 <body>
 
 
@@ -52,8 +32,8 @@
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-	<script src="script.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/script.js"></script>
 </body>
 
 </html>
