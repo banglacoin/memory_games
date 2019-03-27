@@ -15,38 +15,29 @@ var shuffle = [];
 var gameFieldWidth;
 var gameFieldHeight;
 
-//Home Screen With all card
-createGrid(4, 4);
-
+createGrid(4, 4); //Home Screen With all card
 // Create Horizontal and Verticle Coulumn
 function createGrid(gameFieldWidth, gameFieldHeight) {
   for (var i = 0; i < gameFieldWidth * gameFieldHeight / 2; i++) {
     sortedCards.push(i);
     sortedCards.push(i);
   }
-  //Random Card function invoke
-  randomCard();
-  //Game Field function invoke
-  createGameField();
-}
 
-//Create Random Card function
-function randomCard() {
+  // Shuffle Array Index number
   while (sortedCards.length > 0) {
     var rand = Math.floor(Math.random() * (sortedCards.length));
     shuffle.push(sortedCards[rand]);
     sortedCards.splice(rand, 1);
   }
-}
 
-// Create Game Field With X and Y axis
-function createGameField() {
+  // Create Game Field With X and Y axis
   for (var x = 0; x < gameFieldWidth; x++) {
     for (var y = 0; y < gameFieldHeight; y++) {
       createCard(shuffle.pop(), x, y);
     }
   }
-}
+} 
+
 // Create Card function
 function createCard(cardNum, posX, posY) {
   var card = document.createElement("img");
@@ -69,15 +60,18 @@ function clickCard(e) {
     //first card is not clicked
     card.src = "images/" + card.num + ".png";
     firstCard = card;
-  } //If user click first card more than once
-  else if (firstCard === card) {
+
+  } else if (firstCard === card){
     firstCard.src = "images/bg.png";
     firstCard = 0;
   } else if (secondCard === 0) {
     //first card clicked but second card is not clicked
     card.src = "images/" + card.num + ".png";
     secondCard = card;
-    setTimeout(checkCards, 1000); //Delay One Second
+    //If second card was click and not same as first card
+    //then second card wait one second and then both card
+    //flip black.
+    setTimeout(checkCards, 1000);
   }
 }
 
@@ -98,7 +92,6 @@ function checkCards() {
 
 //Start button
 newGame.addEventListener("click", startAgain);
-//Start Again Function
 function startAgain() {
   gameDiv.innerHTML = " ";
   createGrid(4, 4);
@@ -106,24 +99,21 @@ function startAgain() {
 
 //Select 4 pairs
 pairs4.addEventListener("click", pairsOfFour);
-
 function pairsOfFour() {
   gameDiv.innerHTML = " ";
-  gameDiv.pairs4.innerHTML = createGrid(4, 2);
+  createGrid(4, 2);
 }
 
 //Select 6 pairs
 pairs6.addEventListener("click", pairsOfSix);
-
 function pairsOfSix() {
   gameDiv.innerHTML = " ";
-  gameDiv.pairs6.innerHTML = createGrid(4, 3);
+  createGrid(4, 3);
 }
 
 //Select 8 pairs
 pairs8.addEventListener("click", pairsOfEight);
-
 function pairsOfEight() {
   gameDiv.innerHTML = " ";
-  gameDiv.pairs8.innerHTML = createGrid(4, 4);
+  createGrid(4, 4);
 }
