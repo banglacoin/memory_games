@@ -1,9 +1,6 @@
 //Variable DOM Element
 var gameDiv = document.getElementById("memoryGame");
-var newGame = document.getElementById("startAgain");
-var pairs4 = document.getElementById("pairs4");
-var pairs6 = document.getElementById("pairs6");
-var pairs8 = document.getElementById("pairs8");
+var console = document.getElementById("console");
 
 //Variable
 var cardSize = 100;
@@ -36,7 +33,7 @@ function createGrid(gameFieldWidth, gameFieldHeight) {
       createCard(shuffle.pop(), x, y);
     }
   }
-} 
+}
 
 // Create Card function
 function createCard(cardNum, posX, posY) {
@@ -55,12 +52,10 @@ function createCard(cardNum, posX, posY) {
 function clickCard(e) {
   // e(events) will remember which card was clicked
   var card = e.target;
-
   if (firstCard === 0) {
     //first card is not clicked
     card.src = "images/" + card.num + ".png";
     firstCard = card;
-
   } else if (firstCard === card){
     firstCard.src = "images/bg.png";
     firstCard = 0;
@@ -90,30 +85,22 @@ function checkCards() {
   secondCard = 0;
 }
 
-//Start button
-newGame.addEventListener("click", startAgain);
-function startAgain() {
-  gameDiv.innerHTML = " ";
-  createGrid(4, 4);
-}
+//Add Event Listener on Button
+console.addEventListener('click', buttonInAction, false);
 
-//Select 4 pairs
-pairs4.addEventListener("click", pairsOfFour);
-function pairsOfFour() {
-  gameDiv.innerHTML = " ";
-  createGrid(4, 2);
-}
-
-//Select 6 pairs
-pairs6.addEventListener("click", pairsOfSix);
-function pairsOfSix() {
-  gameDiv.innerHTML = " ";
-  createGrid(4, 3);
-}
-
-//Select 8 pairs
-pairs8.addEventListener("click", pairsOfEight);
-function pairsOfEight() {
-  gameDiv.innerHTML = " ";
-  createGrid(4, 4);
+function buttonInAction(e) {
+  if(e.target !== e.currentTarget) {
+    var clickedItem = e.target.id;
+    if(clickedItem === 'startAgain' || clickedItem === 'pairs8') {
+      gameDiv.innerHTML = " ";
+      createGrid(4,4);
+    } else if (clickedItem === 'pairs6'){
+      gameDiv.innerHTML = " ";
+      createGrid(4,3);
+    } else {
+      gameDiv.innerHTML = " ";
+      createGrid(4,2);
+    }
+  }
+  e.stopPropagation();
 }
