@@ -1,20 +1,22 @@
+
+
+memoryGame();
+
+
+function memoryGame() {
 //Variable DOM Element
-var gameDiv = document.getElementById("memoryGame");
-var console = document.getElementById("console");
+ this.gameDiv = document.getElementById("memoryGame");
+ this.console = document.getElementById("console");
 
 //Variable
-var cardSize = 100;
-var cardSpacing = 10;
-var firstCard = 0;
-var secondCard = 0;
-var sortedCards = [];
-var shuffle = [];
-var gameFieldWidth;
-var gameFieldHeight;
+ this.cardSize = 100;
+ this.cardSpacing = 10;
+ this.firstCard = 0;
+ this.secondCard = 0;
+ this.sortedCards = [];
+ this.shuffle = [];
 
-createGrid(4, 4); //Home Screen With all card
-// Create Horizontal and Verticle Coulumn
-function createGrid(gameFieldWidth, gameFieldHeight) {
+this.createGrid = function(gameFieldWidth, gameFieldHeight) {
   for (var i = 0; i < gameFieldWidth * gameFieldHeight / 2; i++) {
     sortedCards.push(i);
     sortedCards.push(i);
@@ -33,10 +35,9 @@ function createGrid(gameFieldWidth, gameFieldHeight) {
       createCard(shuffle.pop(), x, y);
     }
   }
-}
-
+};
 // Create Card function
-function createCard(cardNum, posX, posY) {
+this.createCard = function(cardNum, posX, posY) {
   var card = document.createElement("img");
   card.num = cardNum;
   card.src = "images/bg.png";
@@ -46,10 +47,10 @@ function createCard(cardNum, posX, posY) {
   card.style.top = (posY * (cardSize + cardSpacing) + cardSpacing) + "px";
   card.onclick = clickCard;
   gameDiv.appendChild(card);
-}
+};
 
 // Click Card function
-function clickCard(e) {
+this.clickCard = function (e) {
   // e(events) will remember which card was clicked
   var card = e.target;
   if (firstCard === 0) {
@@ -68,9 +69,9 @@ function clickCard(e) {
     //flip black.
     setTimeout(checkCards, 1000);
   }
-}
+};
 
-function checkCards() {
+this.checkCards = function() {
   //Compare Card
   if (firstCard.num === secondCard.num) {
     //If card matches
@@ -83,12 +84,10 @@ function checkCards() {
   }
   firstCard = 0;
   secondCard = 0;
-}
+};
 
-//Add Event Listener on Button
-console.addEventListener('click', buttonInAction, false);
-
-function buttonInAction(e) {
+//Add Event Listener Function
+this.buttonInAction = function(e) {
   if(e.target !== e.currentTarget) {
     var clickedItem = e.target.id;
     if(clickedItem === 'startAgain' || clickedItem === 'pairs8') {
@@ -103,4 +102,12 @@ function buttonInAction(e) {
     }
   }
   e.stopPropagation();
+};
+
+this.createGrid(4, 4); //Home Screen With all card
+// Create Horizontal and Verticle Coulumn
+
+//Add Event Listener on Button
+this.console.addEventListener('click', buttonInAction, false);
+
 }
